@@ -4,8 +4,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class WaitingJoinExample {
     public static void main(String[] args) {
-        CompletableFuture<Integer> cf = CompletableFuture.supplyAsync(() -> {
-            slee(3000);
+        CompletableFuture.supplyAsync(() -> {
+            sleep(3000);
             System.out.println("비동기 시작");
             return 1;
         }).thenApplyAsync(r -> {
@@ -19,10 +19,8 @@ public class WaitingJoinExample {
         }).thenAccept(r -> {
             sleep(3000);
             System.out.println("최종 결과:" + r);
-        });
+        }).join();
 
-        sleep(1000);
-        cf.join();
         System.out.println("메인 스레드 종료");
 
     }
