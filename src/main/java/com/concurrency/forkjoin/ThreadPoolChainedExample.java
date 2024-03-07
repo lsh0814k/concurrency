@@ -35,6 +35,9 @@ public class ThreadPoolChainedExample {
             System.out.println("병렬 처리: " + Thread.currentThread().getName());
             System.out.println("최종 결과: " + res);
         }, forkJoinPool).join();
+
+        forkJoinPool.shutdown();
+        executorService.shutdown();
     }
 
 }
